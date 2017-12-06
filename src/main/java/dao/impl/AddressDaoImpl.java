@@ -31,11 +31,14 @@ public class AddressDaoImpl extends SessionUtil implements AddressDao {
 
         openTransactionSession();
 
-        String sql = "SELECT * FROM ADDRESS";
+//        String sql = "SELECT * FROM ADDRESS";
+//
+//        Session session = getSession();
+//        Query query = session.createNativeQuery(sql).addEntity(Address.class);
+//        List<Address> addressList = query.list();
 
         Session session = getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Address.class);
-        List<Address> addressList = query.list();
+        List<Address>  addressList = session.createQuery("from Address").list();
 
         closeTransactionSesstion();
 
@@ -47,13 +50,15 @@ public class AddressDaoImpl extends SessionUtil implements AddressDao {
 
         openTransactionSession();
 
-        String sql = "SELECT * FROM ADDRESS ID = :id";
+//        String sql = "SELECT * FROM ADDRESS WHERE ID = :id";
+//        Session session = getSession();
+//        Query query = session.createNativeQuery(sql).addEntity(Address.class);
+//        query.setParameter("id", id);
+//        Address address = (Address) query.getSingleResult();
 
         Session session = getSession();
-        Query query = session.createNativeQuery(sql).addEntity(Address.class);
-        query.setParameter("id", id);
+        Address address = session.get(Address.class, new Long(id));
 
-        Address address = (Address) query.getSingleResult();
 
         closeTransactionSesstion();
 

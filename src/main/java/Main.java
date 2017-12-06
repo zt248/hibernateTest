@@ -22,7 +22,14 @@ public class Main {
         address.setStreet("Fogela 1E");
         address.setPostCode("123456");
 
-        addressDaoImpl.add(address);
+//        addressDaoImpl.add(address);
+
+//        for (Address address1 : addressDaoImpl.getAll()){
+//            System.out.println(address1);
+//        }
+
+        System.out.println(addressDaoImpl.getById(1L));
+
         HibernateUtil.shutdown();
     }
 }
